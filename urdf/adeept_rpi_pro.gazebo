@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot>
+
+  <gazebo reference="chassis">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="left_track">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="right_track">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100.0</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <leftFrontJoint>left_track_fwheel_jnt</leftFrontJoint>
+      <rightFrontJoint>right_track_fwheel_jnt</rightFrontJoint>
+      <leftRearJoint>left_track_rwheel_jnt</leftRearJoint>
+      <rightRearJoint>right_track_rwheel_jnt</rightRearJoint>
+      <wheelSeparation>0.75</wheelSeparation>
+      <wheelDiameter>0.060</wheelDiameter>
+      <robotBaseFrame>robot_footprint</robotBaseFrame>
+      <torque>200</torque>
+      <MaxForce>5.0</MaxForce>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <broadcastTF>true</broadcastTF>
+      <covariance_x>0.001</covariance_x>
+      <covariance_y>0.001</covariance_y>
+      <covariance_yaw>0.01</covariance_yaw>
+    </plugin>
+  </gazebo>
+</robot>
